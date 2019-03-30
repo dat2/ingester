@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ingester"
+version = "0.1.0"
+description = ""
+authors = ["Nicholas Dujay <nicholas.dujay@tophatmonocle.com>"]
+
+[tool.poetry.scripts]
+producer = "ingester.producer.cli:main"
+consumer = "ingester.consumer.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+attrs = "^19.1"
+kafka-python = "^1.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+invoke = "^1.2"
+black = {version = "^18.3-alpha.0",allows-prereleases = true}
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

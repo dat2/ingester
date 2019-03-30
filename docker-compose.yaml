@@ -1,0 +1,29 @@
+version: '3.6'
+services:
+  producer:
+    image: ingester:latest
+    command:
+      - producer
+    environment:
+      KAFKA_TOPIC: "example"
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+  consumer:
+    image: ingester:latest
+    environment:
+      KAFKA_TOPIC: "example"
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    command:
+      - consumer
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    ports:
+      - "9092:9092"
+    image: wurstmeister/kafka
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: "example:1:1"
+      KAFKA_ADVERTISED_PORT: 9092
