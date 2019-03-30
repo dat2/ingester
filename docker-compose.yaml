@@ -16,14 +16,10 @@ services:
       - consumer
   zookeeper:
     image: wurstmeister/zookeeper
-    ports:
-      - "2181:2181"
   kafka:
-    ports:
-      - "9092:9092"
     image: wurstmeister/kafka
     environment:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_CREATE_TOPICS: "example:1:1"
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ADVERTISED_PORT: 9092
